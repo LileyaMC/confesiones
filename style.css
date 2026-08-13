@@ -1,0 +1,503 @@
+:root {
+    --color-primario: #7b2cbf;
+    --color-primario-oscuro: #5a189a;
+    --color-primario-claro: #9d4edd;
+    --color-secundario: #f72585;
+    --color-secundario-brillo: rgba(247, 37, 133, 0.35);
+    --color-cian: #4cc9f0;
+    --color-amarillo: #fee440;
+    --color-leido: #10b981;
+    --color-leido-oscuro: #059669;
+
+    --fondo-tarjeta: rgba(255, 255, 255, 0.88);
+    --texto-principal: #2b1a3d;
+    --texto-atenuado: #6b5b7b;
+
+    --fuente-titulo: 'Righteous', cursive;
+    --fuente-destacada: 'Outfit', sans-serif;
+    --fuente-cuerpo: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--fuente-cuerpo);
+    color: var(--texto-principal);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 50%, #fbc2eb 100%);
+    background-size: 300% 300%;
+    animation: cambioDegradado 20s ease infinite;
+    position: relative;
+    overflow-x: hidden;
+    padding: 30px 15px 60px;
+}
+
+@keyframes cambioDegradado {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* =======================================================
+   SISTEMA DE NUBES EN MOVIMIENTO (IZQUIERDA A DERECHA)
+   NO UNIFORME: Velocidades variables, alturas, tamaños, 
+   opacidades y ondulación vertical orgánica
+   ======================================================= */
+#contenedor-nubes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.nube {
+    position: absolute;
+    background-image: url("nube-removebg-preview.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    will-change: transform, left;
+    filter: drop-shadow(0 8px 18px rgba(123, 44, 191, 0.12));
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+/* Trayectoria de izquierda a derecha con salida y entrada suave */
+@keyframes desplazamientoDerecha {
+    0% {
+        left: -320px;
+    }
+
+    100% {
+        left: 105vw;
+    }
+}
+
+/* Ondulación orgánica no uniforme (balanceo vertical) */
+@keyframes balanceoOnda1 {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-18px) scale(1.03) rotate(1deg);
+    }
+
+    66% {
+        transform: translateY(12px) scale(0.98) rotate(-1deg);
+    }
+}
+
+@keyframes balanceoOnda2 {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1) rotate(0deg);
+    }
+
+    40% {
+        transform: translateY(22px) scale(1.02) rotate(-1.5deg);
+    }
+
+    75% {
+        transform: translateY(-14px) scale(0.97) rotate(1deg);
+    }
+}
+
+@keyframes balanceoOnda3 {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(-28px) scale(1.04);
+    }
+}
+
+/* Configuración de capas de nubes con parámetros no uniformes */
+.nube-1 {
+    width: 260px;
+    height: 150px;
+    top: 4%;
+    opacity: 0.55;
+    animation: desplazamientoDerecha 42s linear infinite, balanceoOnda1 8s ease-in-out infinite;
+    animation-delay: -8s, 0s;
+}
+
+.nube-2 {
+    width: 170px;
+    height: 100px;
+    top: 18%;
+    opacity: 0.45;
+    animation: desplazamientoDerecha 58s linear infinite, balanceoOnda2 11s ease-in-out infinite;
+    animation-delay: -26s, -3s;
+}
+
+.nube-3 {
+    width: 320px;
+    height: 180px;
+    top: 32%;
+    opacity: 0.65;
+    animation: desplazamientoDerecha 34s linear infinite, balanceoOnda3 7s ease-in-out infinite;
+    animation-delay: -14s, -1s;
+}
+
+.nube-4 {
+    width: 140px;
+    height: 85px;
+    top: 48%;
+    opacity: 0.38;
+    animation: desplazamientoDerecha 68s linear infinite, balanceoOnda1 13s ease-in-out infinite;
+    animation-delay: -45s, -5s;
+}
+
+.nube-5 {
+    width: 280px;
+    height: 160px;
+    top: 62%;
+    opacity: 0.52;
+    animation: desplazamientoDerecha 38s linear infinite, balanceoOnda2 9s ease-in-out infinite;
+    animation-delay: -19s, -2s;
+}
+
+.nube-6 {
+    width: 200px;
+    height: 115px;
+    top: 76%;
+    opacity: 0.48;
+    animation: desplazamientoDerecha 50s linear infinite, balanceoOnda3 10s ease-in-out infinite;
+    animation-delay: -33s, -4s;
+}
+
+.nube-7 {
+    width: 340px;
+    height: 195px;
+    top: 86%;
+    opacity: 0.6;
+    animation: desplazamientoDerecha 30s linear infinite, balanceoOnda1 8.5s ease-in-out infinite;
+    animation-delay: -5s, -1.5s;
+}
+
+.nube-8 {
+    width: 190px;
+    height: 110px;
+    top: 10%;
+    opacity: 0.4;
+    animation: desplazamientoDerecha 75s linear infinite, balanceoOnda2 14s ease-in-out infinite;
+    animation-delay: -55s, -6s;
+}
+
+/* Luces decorativas de fondo */
+.luz-ambiental {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.45;
+}
+
+.luz-1 {
+    top: 10%;
+    left: 15%;
+    width: 350px;
+    height: 350px;
+    background: #ff758c;
+}
+
+.luz-2 {
+    bottom: 10%;
+    right: 10%;
+    width: 400px;
+    height: 400px;
+    background: #a1c4fd;
+}
+
+/* =======================================================
+   CONTENEDOR PRINCIPAL CON GLASSMORPHISM
+   ======================================================= */
+.contenedor {
+    max-width: 860px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 38px 34px;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    box-shadow:
+        0 20px 50px rgba(90, 24, 154, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+    z-index: 10;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* Cabecera */
+.encabezado {
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+h1 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    background: linear-gradient(135deg, #7b2cbf 0%, #f72585 50%, #4361ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 16px rgba(247, 37, 133, 0.15);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    line-height: 1.15;
+}
+
+.subtitulo {
+    font-family: var(--fuente-destacada);
+    font-size: 1.02rem;
+    color: var(--texto-atenuado);
+    font-weight: 500;
+}
+
+/* Lista de confesiones */
+#lista-confesiones {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* =======================================================
+   TARJETA DE CONFESIÓN CON ANIMACIÓN DE SCROLL
+   Aparece y desaparece suavemente al desplazarse
+   ======================================================= */
+.tarjeta-confesion {
+    position: relative;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    padding: 22px 26px 16px;
+    border-radius: 20px;
+    border: 1.5px solid rgba(247, 37, 133, 0.22);
+    border-left: 7px solid var(--color-secundario);
+    box-shadow: 0 8px 25px rgba(247, 37, 133, 0.08);
+    overflow: hidden;
+
+    /* Estado inicial fuera de vista (desaparece al salir del viewport) */
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+    will-change: opacity, transform;
+}
+
+/* Estado visible al entrar en pantalla (aparece al desplazarse) */
+.tarjeta-confesion.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.tarjeta-confesion:hover {
+    transform: translateY(-3px) scale(1.006) !important;
+    box-shadow: 0 14px 32px rgba(123, 44, 191, 0.16);
+}
+
+/* =======================================================
+   TARJETA MARCADA COMO LEÍDA (PERSISTENTE)
+   Tono verde esmeralda suave
+   ======================================================= */
+.tarjeta-confesion.leida {
+    background: rgba(240, 253, 244, 0.88);
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    border-left: 7px solid var(--color-leido);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.06);
+}
+
+.tarjeta-confesion.leida.visible {
+    opacity: 0.9;
+}
+
+.tarjeta-confesion.leida:hover {
+    opacity: 1 !important;
+    background: rgba(240, 253, 244, 0.98);
+    box-shadow: 0 8px 22px rgba(16, 185, 129, 0.14);
+}
+
+.tarjeta-confesion.leida p {
+    color: #374151;
+}
+
+/* Decoración de comilla */
+.comilla-tarjeta {
+    position: absolute;
+    right: 20px;
+    top: 8px;
+    font-family: var(--fuente-titulo);
+    font-size: 4.2rem;
+    line-height: 1;
+    color: rgba(123, 44, 191, 0.06);
+    user-select: none;
+    pointer-events: none;
+    font-style: italic;
+}
+
+.tarjeta-confesion.leida .comilla-tarjeta {
+    color: rgba(16, 185, 129, 0.07);
+}
+
+/* Animación de entrada para tarjetas nuevas */
+.tarjeta-confesion.nueva {
+    animation: aparicionTarjeta 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes aparicionTarjeta {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.tarjeta-confesion p {
+    font-family: var(--fuente-cuerpo);
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--texto-principal);
+    white-space: pre-wrap;
+    margin-bottom: 12px;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+    word-break: break-word;
+}
+
+/* Pie de tarjeta con botón */
+.pie-tarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(123, 44, 191, 0.12);
+    position: relative;
+    z-index: 2;
+}
+
+.tarjeta-confesion.leida .pie-tarjeta {
+    border-top-color: rgba(16, 185, 129, 0.2);
+}
+
+/* Botón Marcar Leído / Leído */
+.boton-leido {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid rgba(123, 44, 191, 0.25);
+    background: #ffffff;
+    color: var(--color-primario);
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    user-select: none;
+}
+
+.boton-leido:hover {
+    background: var(--color-primario);
+    color: white;
+    border-color: var(--color-primario);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(123, 44, 191, 0.2);
+}
+
+/* Estado del botón cuando está leído */
+.boton-leido.esta-leido {
+    background: var(--color-leido);
+    color: white;
+    border-color: var(--color-leido);
+    box-shadow: 0 3px 8px rgba(16, 185, 129, 0.25);
+}
+
+.boton-leido.esta-leido:hover {
+    background: var(--color-leido-oscuro);
+    border-color: var(--color-leido-oscuro);
+}
+
+/* Estado vacío */
+.estado-vacio {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--texto-atenuado);
+}
+
+.icono-vacio {
+    font-size: 3.5rem;
+    margin-bottom: 12px;
+    display: inline-block;
+    animation: balanceoOnda1 4s ease-in-out infinite;
+}
+
+.titulo-vacio {
+    font-family: var(--fuente-destacada);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-bottom: 6px;
+}
+
+.descripcion-vacia {
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    body {
+        padding: 15px 10px 40px;
+    }
+
+    .contenedor {
+        padding: 24px 16px;
+        border-radius: 20px;
+    }
+
+    .tarjeta-confesion {
+        padding: 18px 16px 14px;
+    }
+
+    .tarjeta-confesion p {
+        font-size: 1.05rem;
+    }
+}
